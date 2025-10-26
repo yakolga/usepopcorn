@@ -15,7 +15,8 @@ export default function StarRating({
     color = '#fcc419', 
     size = 38, 
     className = "",
-    messages = []
+    messages = [],
+    onSetRating
     }) {
     const [rating, setRating] = useState(0);
     const [tempaRating, setTempRating] = useState(0);
@@ -26,6 +27,8 @@ export default function StarRating({
         color,
         fontSize: `${size}px`
     }
+
+    onSetRating(rating);
 
     return (
         <div style={containerStyle} className={className}>
