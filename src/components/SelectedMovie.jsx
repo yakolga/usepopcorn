@@ -11,6 +11,15 @@ export default function SelectedMovie({selectedId, onCloseMovie, onAddWatched, w
 
     const {Title: title, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, Genre: genre} = movie;
 
+    useEffect(function() {
+        if (!title) return
+        document.title = `Movie | ${title}`;
+
+        return function() {
+            document.title = 'usePopcorn';
+        }
+    }, [title])
+
     function handleAdd() {
         const newWatcedMovie = {
             imdbID: selectedId,
@@ -36,6 +45,20 @@ export default function SelectedMovie({selectedId, onCloseMovie, onAddWatched, w
 
             getSelectedMovieDetails();
     }, [selectedId]);
+
+    useEffect(function() {
+        function onEscClose(e) {
+            if (e.code === 'Escape') {
+                onCloseMovie();
+            }
+        }
+
+        document.addEventListener('keydown', onEscClose);
+
+        return function() {
+            document.removeEventListener('keydown', onEscClose);
+        }
+    }, [onCloseMovie]);
 
     return (
         <div className="details">
