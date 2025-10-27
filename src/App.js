@@ -13,16 +13,16 @@ import SelectedMovie from "./components/SelectedMovie";
 
 import { useState, useEffect } from "react";
 
-const tempMovieData = [];
-const tempWatchedData = [];
-
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [watchedMovies, setWatchedMovies] = useState(tempWatchedData);
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState('');
+  const [watchedMovies, setWatchedMovies] = useState(function() {
+    const storedValue = localStorage.getItem('watched');
+    return JSON.parse(storedValue) || [];
+  });
 
   function updateSelectedMovie(id) {
     if (id === selectedId) {
@@ -44,6 +44,10 @@ export default function App() {
     setWatchedMovies(watched => [...watched, movie]);
     handleCloseSelectedMovie();
   }
+
+  useEffect(function() {
+    localStorage.setItem('watched', JSON.stringify(watchedMovies));
+  }, [watchedMovies]);
 
   useEffect(function() {
     const controller = new AbortController();

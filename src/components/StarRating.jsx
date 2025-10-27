@@ -28,13 +28,16 @@ export default function StarRating({
         fontSize: `${size}px`
     }
 
-    onSetRating(rating);
+    function handleRating(rating) {
+        setRating(rating);
+        onSetRating(rating);
+    }
 
     return (
         <div style={containerStyle} className={className}>
             <div style={starContainerStyle}>
                 {Array.from({length: maxRating}, (_,i) => (
-                    <Star color={color} size={size} key={i} full={tempaRating ? tempaRating >= i + 1 : rating >= i + 1} onRate={() => setRating(i + 1)} onHoverIn={() => setTempRating(i + 1)} onHoverOut={() => setTempRating(0)}/>
+                    <Star color={color} size={size} key={i} full={tempaRating ? tempaRating >= i + 1 : rating >= i + 1} onRate={() => handleRating(i + 1)} onHoverIn={() => setTempRating(i + 1)} onHoverOut={() => setTempRating(0)}/>
                 ))}
             </div>
             <p style={textStyle}>{tempaRating || rating || ''}</p>
