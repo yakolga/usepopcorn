@@ -44,7 +44,7 @@ export default function SelectedMovie({selectedId, onCloseMovie, onAddWatched, w
         function() {
             async function getSelectedMovieDetails() {
                 setIsLoading(true);
-                const res = await fetch(`http://www.omdbapi.com/?apikey=9803f263&i=${selectedId}`);
+                const res = await fetch(`https://www.omdbapi.com/?apikey=9803f263&i=${selectedId}`);
                 if (!res.ok) throw new Error("Something went wrong with fetching movies");      
                 const data = await res.json();
                 setMovie(data);
