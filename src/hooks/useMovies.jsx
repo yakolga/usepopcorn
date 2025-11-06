@@ -12,7 +12,7 @@ export function useMovies(query) {
             try {
                 setIsLoading(true);
                 setError('');
-                const res = await fetch(`http://www.omdbapi.com/?apikey=9803f263&s=${query}`, {signal: controller.signal});
+                const res = await fetch(`https://www.omdbapi.com/?apikey=9803f263&s=${query}`, {signal: controller.signal});
 
                 if (!res.ok) throw new Error("Something went wrong with fetching movies");
 
