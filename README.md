@@ -1,5 +1,7 @@
 # Project Title: UsePopcorn
 
+## [Live Demo](https://yakolga.github.io/usepopcorn/)
+
 ## Description
 UsePopcorn is a project designed to help users manage their movie watchlist efficiently. It provides an intuitive interface, personalized recommendations, and seamless integration with popular streaming platforms.
 
